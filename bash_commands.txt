@@ -1,0 +1,92 @@
+#!/bin/bash
+echo The shell scripting is fun!
+stat="the shell scripting is fun"
+echo $stat
+host_name=$(hostname)
+echo "This script is running on"$host_name
+echo -e "man, \nbear, \npig, \ndog, \ncat, \nsheep"
+files_test=$(ls files/)
+echo $files_test
+for temp in $files_test
+do
+
+        if [ $temp == "samp.txt" ];then
+        echo file present $temp
+
+        fi
+
+done
+
+animals=" man bear pig dog cat sheep"
+for animal in $animals
+do
+  echo  $animal
+done
+
+echo "the file exist with 0 status"
+#exit 0
+
+
+echo "enter file name"
+read filename
+if [  -f  "$filename" ]
+then
+        echo  "$filename it is a file"
+elif [ -d  "$filename" ]
+then
+        echo "$filename  it is directory"
+else
+        echo "$filename it is not present"
+fi
+
+
+
+filenames=$(ls)
+for filename in $filenames
+do
+if [  -f "$filename" ]
+then
+        echo " $filename it is a file"
+elif [ -d  "$filename" ]
+then
+        echo " $filename it is directory"
+else
+        echo " $filename is not any any type "
+fi
+done
+
+
+echo "files "
+filename=$(ls -f)
+if [  -f "$filename" ]
+then
+        echo " $filename it is a file"
+elif [ -d  "$filename" ]
+then
+        echo " $filename it is directory"
+else
+        echo " $filename is not any any type "
+fi
+
+function file_count()
+{
+        files=$( ls -f | wc -l  )
+  echo "the count $files"
+}
+file_count
+
+
+
+
+function file_count_parameter()
+{
+
+        local var=$1
+        files=$( ls $var | wc -l  )
+  echo "the count $files"
+}
+file_count_parameter /home/ec2-user/
+
+
+
+
